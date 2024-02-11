@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/survey" method="post" class="pure-form pure-form-stacked">
+    <fieldset>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required minlength="3">
+
+        <label>Your Age:</label>
+        <div class="pure-controls">
+            <label for="age1" class="pure-radio">
+                <input id="age1" type="radio" name="age" value="18-25"> 18-25
+            </label>
+            <label for="age2" class="pure-radio">
+                <input id="age2" type="radio" name="age" value="26-35"> 26-35
+            </label>
+            <label for="age3" class="pure-radio">
+                <input id="age3" type="radio" name="age" value="36-50"> 36-50
+            </label>
+            <!-- Add more radio buttons as needed -->
+        </div>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option>USA</option>
+            <option>Canada</option>
+            <option>China</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label for="subscribe" class="pure-checkbox">
+            <input id="subscribe" type="checkbox" name="subscribe"> Subscribe to newsletter
+        </label>
+
+        <textarea id="comments" name="comments" style="display: none;"></textarea>
+
+        <button type="submit" class="pure-button pure-button-primary">Next</button>
+    </fieldset>
+</form>
+
+<script>
+document.getElementById('subscribe').addEventListener('change', function() {
+    document.getElementById('comments').style.display = this.checked ? 'block' : 'none';
+});
+</script>
+{% endblock %}

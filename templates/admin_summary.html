@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Survey Summary</h1>
+
+<!-- 文本回答区域 -->
+<div>
+  <h2>Text Answers</h2>
+  {% for answer in data.text_answers %}
+  <p>{{ answer[0]}}: {{ answer[1] }} - {{ answer[2] }}</p>
+  {% endfor %}
+</div>
+
+
+<!-- 图表区域 -->
+<div>
+  <h2>Age Distribution</h2>
+  <canvas id="ageChart"></canvas>
+
+  <h2>Country Distribution</h2>
+  <canvas id="countryChart"></canvas>
+
+  <h2>Subscription Status</h2>
+  <canvas id="subscribeChart"></canvas>
+
+  <h2>Responses Over Time</h2>
+  <canvas id="timeSeriesChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// 假设 Flask 视图传递了 data 字典到模板中
+var ageData = {{ data.age_counts | tojson | safe }};
+var ageLabels = {{ data.age_labels | tojson | safe }};
+var countryData = {{ data.country_counts | tojson | safe }};
+var countryLabels = {{ data.country_labels | tojson | safe }};
+var subscribeData = {{ data.subscribe_counts | tojson | safe }};
+var subscribeLabels = {{ data.subscribe_labels | tojson | safe }};
+var timeSeriesData = {{ data.time_series_counts | tojson | safe }};
+var timeSeriesLabels = {{ data.time_series_labels | tojson | safe }};
+var textanswers = {{ data.text_answers | tojson | safe }};
+
+
+// 年龄分布条形图
+new Chart(document.getElementById('ageChart'), {
+  type: 'bar',
+  data: {
+    labels: ageLabels,
+    datasets: [{ label: 'Age Distribution', data: ageData }]
+  }
+});
+
+// 国家分布条形图
+new Chart(document.getElementById('countryChart'), {
+  type: 'bar',
+  data: {
+    labels: countryLabels,
+    datasets: [{ label: 'Country Distribution', data: countryData }]
+  }
+});
+
+// 订阅状态条形图
+new Chart(document.getElementById('subscribeChart'), {
+  type: 'pie',  // 也可以尝试 'doughnut' 或 'pie'
+  data: {
+    labels: subscribeLabels,
+    datasets: [{ label: 'Subscription Status', data: subscribeData }]
+  }
+});
+
+// 时间序列图
+new Chart(document.getElementById('timeSeriesChart'), {
+  type: 'line',
+  data: {
+    labels: timeSeriesLabels,
+    datasets: [{ label: 'Responses Over Time', data: timeSeriesData }]
+  }
+});
+textanswers.forEach(function(answer) {
+  console.log("Answer ID: ", answer[0]); // 假设 ID 是数组的第一个元素
+  console.log("Answer Name: ", answer[1]); // 假设 Name 是数组的第二个元素
+  console.log("Answer Comments: ", answer[2]); // 假设 Comments 是数组的第三个元素
+});
+
+</script>
+{% endblock %}
