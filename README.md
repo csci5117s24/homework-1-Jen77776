@@ -6,24 +6,21 @@ You are required to fill out all of the following sections to help us grade your
 
 ## Student (to be completed individually)
 
-* First Last, x500@umn.edu
+* Jen(Xizhen) Kang, kang0552@umn.edu
 
 ## Link to Site
-(This should be hosted, accessible, and working, per the technical requirements)
-
-<https://TODO.com/>
+<https://jen-s0x8.onrender.com>
 
 ## Task completion Notes
 
-Please list any features you did not complete here, as well as any notes you have.
-
+I have completed all parts required.
 ## Challenge Task
 
-* I started the challenge task: [yes/no]
-* I completed the challenge task: [yes/no]
+* I started the challenge task: [yes]
+* I completed the challenge task: [yes]
 
-(if applicable) link: <https://TODO.com/admin/summary>
+(if applicable) link: <https://jen-s0x8.onrender.com/admin/summary>
 
 ## Any Extra Notes?
 
-Fill in this with anything else you would like us to know about your submission.
+No.
